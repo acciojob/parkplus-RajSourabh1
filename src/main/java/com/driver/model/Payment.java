@@ -12,7 +12,7 @@ public class Payment {
 
     private boolean paymentCompleted;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private PaymentMode paymentMode;
 
     @OneToOne
