@@ -21,10 +21,12 @@ public class PaymentServiceImpl implements PaymentService {
             Spot spot = reservation.getSpot();
             int amt = spot.getPricePerHour();
             int totalAmt = amt*reservation.getNumberOfHours();
-            if(amountSent != totalAmt)
-                throw new Exception("Insufficient Amount");
 
             if(mode.equalsIgnoreCase("cash")||mode.equalsIgnoreCase("card")||mode.equalsIgnoreCase("upi")){
+
+                if(amountSent != totalAmt)
+                    throw new Exception("Insufficient Amount");
+
                 Payment payment = new Payment();
               //  System.out.println("****");
                 if(mode.equalsIgnoreCase("cash"))
