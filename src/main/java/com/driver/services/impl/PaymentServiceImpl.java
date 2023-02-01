@@ -16,8 +16,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
-
-        if(reservationRepository2.existsById(reservationId)){
+        
             Reservation reservation = reservationRepository2.findById(reservationId).get();
             Spot spot = reservation.getSpot();
             int amt = spot.getPricePerHour();
@@ -27,7 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
 
             if(mode.equalsIgnoreCase("cash")||mode.equalsIgnoreCase("card")||mode.equalsIgnoreCase("upi")){
                 Payment payment = new Payment();
-
+              //  System.out.println("****");
                 if(mode.equalsIgnoreCase("cash"))
                     payment.setPaymentMode(PaymentMode.CASH);
                 else if (mode.equalsIgnoreCase("card"))
@@ -45,7 +44,5 @@ public class PaymentServiceImpl implements PaymentService {
             }
             else
                 throw new Exception("Payment mode not detected");
-        }
-        return null;
     }
 }
